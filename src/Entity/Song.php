@@ -21,12 +21,12 @@ class Song
     /**
      * @ORM\Column(type="string", length=120)
      */
-    private $title;
+    public $title;
 
     /**
      * @ORM\Column(type="string", length=10)
      */
-    private $length;
+    public $length;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Album", mappedBy="song")

@@ -19,6 +19,11 @@ class AlbumRepository extends ServiceEntityRepository
         parent::__construct($registry, Album::class);
     }
 
+    public function findBySong(int $id): array
+    {
+        return ['a'];
+    }
+
 //    /**
 //     * @return Album[] Returns an array of Album objects
 //     */

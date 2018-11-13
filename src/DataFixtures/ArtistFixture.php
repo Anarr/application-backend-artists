@@ -11,12 +11,14 @@ class ArtistFixture extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $artist = new Artist();
-        $artist->setName('Rammstein');
-        $artist->setToken(TokenGenerator::generate(6));
-        
-        $manager->persist($artist);
-
-        $manager->flush();
+        for ($i = 0; $i < 2; $i++) {
+            $artist = new Artist();
+            $artist->setName('Rammstein_'.$i);
+            $artist->setToken(TokenGenerator::generate(6));
+    
+            $manager->persist($artist);
+            $manager->flush();            
+            $this->addReference('album_' . $i, $artist);
+        }
     }
 }

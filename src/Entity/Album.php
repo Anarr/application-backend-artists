@@ -31,7 +31,7 @@ class Album
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    public $description;
+    private $description;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Song", inversedBy="albums")
@@ -46,7 +46,7 @@ class Album
     /**
      * @ORM\Column(type="string", length=6, unique=true)
      */
-    private $token;
+    public $token;
 
     public function __construct()
     {

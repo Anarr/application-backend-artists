@@ -34,7 +34,9 @@ class Album
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Song", inversedBy="albums")
+     * @var string
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Song",mappedBy = "album")
      */
     private $song;
 
@@ -104,10 +106,7 @@ class Album
 
     public function addSong(Song $song): self
     {
-        if (!$this->song->contains($song)) {
-            $this->song[] = $song;
-        }
-
+        $this->songs[] = $song;
         return $this;
     }
 

@@ -29,14 +29,10 @@ class Song
     public $length;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Album", mappedBy="song")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Album", inversedBy = "songs")
      */
-    private $albums;
+    private $album;
 
-    public function __construct()
-    {
-        $this->albums = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -67,31 +63,26 @@ class Song
         return $this;
     }
 
-    /**
-     * @return Collection|Album[]
+
+     /**
+     * Set album.
+     *
+     * @param \App\Entity\Album|null $album
+     *
+     * @return Song
      */
-    public function getAlbums(): Collection
+    public function setAlbum(\App\Entity\Album $album): self
     {
-        return $this->albums;
-    }
-
-    public function addAlbum(Album $album): self
-    {
-        if (!$this->albums->contains($album)) {
-            $this->albums[] = $album;
-            $album->addSong($this);
-        }
-
+        $this->album = $album;
         return $this;
     }
-
-    public function removeAlbum(Album $album): self
+     /**
+     * Get album.
+     *
+     * @return \App\Entity\Album|null
+     */
+    public function getAlbum()
     {
-        if ($this->albums->contains($album)) {
-            $this->albums->removeElement($album);
-            $album->removeSong($this);
-        }
-
-        return $this;
+        return $this->album;
     }
 }
